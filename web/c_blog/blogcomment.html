@@ -1,0 +1,100 @@
+<html>
+<head>
+<style>
+body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.container1 {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container1 img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container1 img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+</style>
+
+</head>
+
+
+<div class="container" ng-controller="c_blogComment_Controller">
+<h3 class="well">
+<center><font face="Monotype Corsiva">Blog Comments</font></center>
+</h3>
+<div class="row">
+<table>
+<tr>
+<td><h3>{{blogData.blog_title}}</h3></td>
+</tr>
+<tr>
+<td>
+{{blogData.blog_description}}
+<hr>
+</td>
+</tr>
+</table>
+</div>
+<!-- <div>
+<h2>Comments</h2>
+<table ng-repeat="comment in allBlogCommentData"><tr><td><h3>
+{{comment.blogComment_id}}
+ <img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{comment.login_name}}" alt="Avatar" height="40px" width="40px">
+{{comment.login_name}}
+</h3></td><td> </td><td><h4>
+{{comment.comments}}</h4></td><td> </td>
+<td>{{comment.commented_date}}</td>
+</tr><tr><td><hr/></td></tr></table><hr></div> -->
+<h2>Comments</h2>
+<div class="container1" ng-repeat="comment in allBlogCommentData" >
+  <img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{comment.login_name}}" alt="Avatar" height="40px" width="40px">
+  <!-- <time>{{message.time|date:'h:mm a'}}</time> -->
+  <p><b>{{comment.login_name}} :</b> {{comment.comments}}</p>
+  <!-- <p>{{comment.comments}}</p> -->
+  <span class="time-right">{{comment.commented_date}}</span>
+</div>
+<div>
+<form>
+<input type="text"  ng-model="comment.comments" placeholder="write comment here...">
+<button type="button" ng-click="addComment()" class="btn btn-lg btn-info">Comment</button>	
+</form>
+</div>
+
+</div>
+</html>

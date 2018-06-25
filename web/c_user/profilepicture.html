@@ -1,0 +1,24 @@
+<div class="container" ng-Controller="c_userController">
+	<form
+		action="http://localhost:8081/CollaborationRestService/profilePicUpload"
+		method="post" enctype="multipart/form-data">
+
+		<div class="col-sm-12">
+			<div class="row">
+				<div class="col-sm-6 form-group">
+
+					<input type="file" name="file" placeholder="upload profile"
+						ng-model="C_Profile.profile_pic" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 form-group">
+
+					<input type="submit" value="Upload" class="form-control">
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+</div>

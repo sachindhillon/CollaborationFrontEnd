@@ -1,0 +1,28 @@
+<div class="container" ng-Controller="c_friendController">
+<h1 class="well"><center><font face="Monotype Corsiva">Friend List</font></center></h1>
+<table class="table">
+<tr>
+<th>SL#</th>
+<th>Image</th>
+<th>Friend Name</th>
+<th></th>
+</tr>
+<tr ng-repeat="friend in myFriend">
+<td></td>
+<td>
+<img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{friend.login_name}}" ng-if="currentUser.login_name == friend.friend_name" height="40px" width="40px">
+<img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{friend.friend_name}}" ng-if="currentUser.login_name == friend.login_name" height="40px" width="40px">
+</td>
+
+<td >
+<input style="border:0;" type="text" readonly ng-if="currentUser.login_name == friend.login_name" value="{{friend.friend_name}}">
+        	<input style="border:0;" type="text" readonly ng-if="currentUser.login_name == friend.friend_name" value="{{friend.login_name}}">
+</td>
+<!-- <td ng-show="currentUser.user_email!={{friend.friend_email}}">{{friend.friend_email}}</td> -->
+<td><button class="btn btn-danger" ng-click="unfriend(friend.friend_id)">Unfriend</button></td>
+</tr>
+
+</table>
+ 
+
+</div>

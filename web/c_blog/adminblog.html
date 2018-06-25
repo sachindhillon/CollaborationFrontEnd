@@ -1,0 +1,17 @@
+<div class="container" ng-Controller="c_blogController">
+<h1 class="well"><center><font face="Monotype Corsiva">Admin Blog</font></center></h1>
+<div ng-repeat="blog in allblogdata">
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#{{blog.blog_id}}">{{blog.blog_title}}</button>
+
+  <div id="{{blog.blog_id}}" class="collapse show">
+    {{blog.blog_description}}
+  </div>
+  <div ng-hide="blog.blog_status=='A'">
+  <input type="button" value="Approve" ng-click="approve(blog.blog_id)" class="btn btn-info"/>
+  </div>
+  <div ng-hide="blog.blog_status=='R'">
+  <input type="button" value="Reject" ng-click="reject(blog.blog_id)" class="btn btn-danger"/>
+  </div>
+  <hr>
+</div>
+</div>

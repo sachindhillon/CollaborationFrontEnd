@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container" ng-Controller="c_blogController">
+
+ <h1 class="well"><center><font face="Monotype Corsiva">Blog Form</font></center></h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>blog</label>
+								<input type="text" name="blog_title" ng-model="Blog.blog_title"  placeholder="Enter title Here.." class="form-control">
+							</div>
+					 		<div class="col-sm-6 form-group">
+								<label>Blog Content </label>
+								<input type="text" name="blog_description" ng-model="Blog.blog_description" placeholder="Enter content Here.." class="form-control">
+							</div>
+							<!-- 
+							<div class="col-sm-6 form-group">
+								<label>emailid </label>
+								<input type="text" name="emailID" ng-model="Blog.emailID" placeholder="Enter emailid Here.." class="form-control">
+							</div>
+							 -->
+						</div>		
+						<button type="button" ng-click="addBlog()" class="btn btn-lg btn-info">AddBlog</button>					
+					</div>
+				</form> 
+		</div>
+	</div>
+	</div>
+</body>
+</html>

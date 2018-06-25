@@ -1,0 +1,89 @@
+<html>
+<head>
+<style>
+body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.container1 {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container1 img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container1 img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+</style>
+</head>
+<div class="container" ng-controller="c_chatMessageController">
+<h1 class="well"><center><font face="Monotype Corsiva">Chat Room</font></center></h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form ng-submit="addMessage()" name="chatMsg"> 
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>Message</label>
+								<!-- <input type="text" name="message" ng-model="message"  placeholder="Enter Chat Message Here.." class="form-control"> -->
+								<textarea rows="5" cols="140" name="message" placeholder="enter Messge here.." ng-model="message" class="form-control"></textarea>
+								<span class="count" ng-bind="max - message.length">140</span>
+							</div>
+						 </div>
+						 </div>
+					<div>
+					<button ng-disabled="message.length>140||message.length==0" class="btn btn-lg btn-info">Send</button>	</div>				
+				</form> 
+	</div>
+	</div>
+	
+	<!-- <div style="border: 2px;" ng-repeat="message in messages|orderBy:'time':true">
+			<time>{{message.time|date:'HH:MM'}}</time>
+			<span>{{message.message}}</span>
+			<br><hr/>
+	</div> -->
+	<div class="container1" ng-repeat="message in messages|orderBy:'time':true" >
+  <img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{currentUser.login_name}}" alt="Avatar" style="width:100%;">
+  <!-- <time>{{message.time|date:'h:mm a'}}</time> -->
+  <p>{{message.message}}</p>
+  <span class="time-right">{{message.time|date:'h:mm a'}}</span>
+</div>
+	
+	
+</div>
+</html>

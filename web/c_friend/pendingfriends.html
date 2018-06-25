@@ -1,0 +1,48 @@
+<div class="container" ng-Controller="c_friendController">
+<h1 class="well"><center><font face="Monotype Corsiva">Pending Friends Request </font></center></h1>
+<table class="table">
+<thead>
+ <tr>
+        <th>#</th>
+        <th>Profile Picture</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="pending in pending">
+    <tr>
+        <td>{{pending.friend_id}}</td>
+        <td ng-show="currentUser.login_name == pending.friend_name"><img src="http://localhost:8081/CollaborationRestService/getProfilePic/{{pending.login_name}}" height="40px" width="40px"></td>
+        <td ng-show="currentUser.login_name == pending.login_name"><img src="http://localhost:8081/CollaborationRestService/getProfilePic/{{pending.friend_name}}" height="40px" width="40px"></td>
+        <td ng-show="currentUser.login_name == pending.friend_name">{{pending.login_name}}</td>
+        <td ng-show="currentUser.login_name == pending.login_name">{{pending.friend_name}}</td>
+        <td>
+        <button class="btn btn-primary" ng-hide="currentUser.login_name == pending.login_name" ng-click="accept(pending.friend_id)">Accept</button>
+        <button class="btn btn-danger" ng-hide="currentUser.login_name == pending.login_name" ng-click="reject(pending.friend_id)">Reject</button>
+        <button class="btn btn-danger" ng-show="currentUser.login_name == pending.login_name" ng-click="reject(pending.friend_id)">Cancel Request</button></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+<!-- <tr>
+<th>SL#</th>
+<th>Image</th>
+<th>User Name</th>
+<th></th>
+</tr>
+<tr ng-repeat="friend in pending">
+<td></td>
+<td><img src="http://localhost:8081/CollaborationRestService/getProfilePic/{{friend.login_name}}" height="40px" width="40px"></td>
+<td>{{friend.login_name}}</td>
+
+<td ng-show="CurrentUser.loginname == pending.friendname"><img src="http://localhost:8086/collaborationRestService/friends/profile/getProfilePicture/{{pending.loginname}}" alt="image" width=100px height=120px></td>
+        <td ng-show="CurrentUser.loginname == pending.loginname"><img src="http://localhost:8086/collaborationRestService/friends/profile/getProfilePicture/{{pending.friendname}}" alt="image" width=100px height=120px></td>
+        <td ng-show="CurrentUser.loginname == pending.friendname">{{pending.loginname}}</td>
+        <td ng-show="CurrentUser.loginname == pending.loginname">{{pending.friendname}}</td>
+
+
+<td><button class="btn btn-info" ng-click="accept(friend.friend_id)">Accept</button>
+<button class="btn btn-danger" ng-click="reject(friend.friend_id)"> Delete</button></td>
+</tr> -->

@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.container1 {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+.container1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container1 img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.container1 img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+</style>
+
+</head>
+
+
+<div class="container" ng-controller="c_forumDiscussion_Controller">
+
+<h3 class="well">
+<center><font face="Monotype Corsiva">Forum Discussions</font></center>
+</h3>
+<div class="row">
+<table>
+<tr>
+<td><h3>{{forumData.forum_name}}</h3></td>
+</tr>
+<tr>
+<td>
+{{forumData.forum_description}}
+<hr>
+</td>
+</tr>
+</table>
+</div>
+
+<h2>Discussions</h2>
+<div class="container1" ng-repeat="discussion in allForumDiscussionData" >
+ <img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{discussion.login_name}}" alt="Avatar" height="40px" width="40px">
+  <!-- <time>{{message.time|date:'h:mm a'}}</time> -->
+  <p><b>{{discussion.login_name}} :</b> {{discussion.discussion}}</p>
+  <!-- <p>{{comment.comments}}</p> -->
+  <span class="time-right">{{discussion.discussion_date}}</span>
+</div>
+<div>
+<form>
+<input type="text"  ng-model="discussion.discussion" placeholder="write discussion here...">
+<button type="button" ng-click="addDiscussion()" class="btn btn-lg btn-info">Post</button>	
+</form>
+</div>
+
+</div>
+
+<!-- <div>
+<h2>Discussions</h2>
+<table ng-repeat="discussion in allForumDiscussionData"><tr><td><h3>
+{{discussion.discussion_id}}
+ <img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{discussion.login_name}}" alt="Avatar" height="40px" width="40px">
+{{discussion.login_name}}
+</h3></td><td> </td><td><h4>
+{{discussion.discussion}}</h4></td><td> </td>
+<td>{{discussion.discussion_date}}</td></tr><tr><td><hr/></td></tr></table><hr></div> -->
+</html>

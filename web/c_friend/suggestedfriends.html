@@ -1,0 +1,19 @@
+<div class="container" ng-Controller="c_friendController">
+<h1 class="well"><center><font face="Monotype Corsiva">Suggested Friends List</font></center></h1>
+<table class="table">
+<tr>
+<th>SL#</th>
+<th>Profile_Picture</th>
+<th>Friend Name</th>
+<th></th>
+</tr>
+<tr ng-repeat="friend in suggested">
+<td></td>
+<td><img src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{friend.login_name}}" height="40px" width="40px"></td></td>
+<td>{{friend.login_name}}</td>
+<td><button class="btn btn-info" ng-click="sendRequest(friend.login_name)">Send Request</button>
+</td>
+</tr>
+
+</table>
+</div>
