@@ -4,7 +4,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 <script src="RouteConfig.js" type="text/javascript"></script>
+<link rel="stylesheet" href="resources/onlinelib/css/font-awesome.min.css"/>
 <script src="c_user/C_UserController.js" type="text/javascript"></script>
 <script src="c_blog/C_Blog_Controller.js" type="text/javascript"></script>
 <script src="c_blog/C_BlogComment_Controller.js" type="text/javascript"></script>
@@ -29,7 +31,7 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-grey fixed-top">
   <!-- Brand -->
-  <a class="navbar-brand" href="#">Home</a>
+  <a class="navbar-brand" href="#/loginSuccess">FrienlyChat</a>
 
   <!-- Links -->
   <ul class="navbar-nav">
@@ -40,7 +42,7 @@
       <a class="nav-link" href="#/login"> Login </a>
     </li>
 
-	<li class="nav-item">
+	<li class="nav-item" ng-hide="currentUser==undefined">
       <a class="nav-link" href="#/chat"> Chat </a>
     </li>
     <!-- Dropdown -->
@@ -68,8 +70,7 @@
       <div class="dropdown-menu">
         <a class="dropdown-item" href="#/addjob" ng-hide="currentUser==undefined"> Add Job</a>
         <a class="dropdown-item" href="#/listofjob" ng-hide="<!-- currentUser==undefined|| -->currentUser.role=='A'">All Jobs</a>
-          <a class="dropdown-item" href="#/alljobsadmin" ng-show="currentUser.role=='A'">Admin ManageJobs</a>
-           <a class="dropdown-item" href="#/appliedjobs" ng-hide="currentUser==undefined">Applied Jobs</a>
+       
       </div>
     </li>
   
@@ -121,14 +122,15 @@
     </li>
 
 <li class="nav-item">
-<form ng-controller="c_userController">
-<input type="submit" value="Logout" class="btn btn-info" ng-submit=logout()>
+<form ng-controller="c_userController" >
+<input type="submit" value="Logout" class="btn btn-info" ng-click="logout()">
 </form>
 </li></ul>
 </nav>
 
 <br>
 <br><br><br><br>
+
  <div  ng-view>
 </div>
 </body>

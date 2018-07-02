@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div class="container" ng-Controller="c_job_Controller">
+	<div class="myBoldFont"
+		style="padding: 20px; font-size: 40px; background-color: rgb(51, 122, 183); color: white">
+		Job Opportunities
+		<button class="btn btn-primary pull-right" id="searchBtn"
+			style="font-size: 30px">
+			<i class="fa fa-search"></i>
+		</button>
+		<div class="row myNote">
+			<div class="col-sm-6">
+				<h3>
+					<b>Search By Title</b>
+				</h3>
+				<input ng-model="searchText.job_title" class="form-control" />
+			</div>
+			<div class="col-sm-6">
+				<h3>
+					<b>Search By Skills Required</b>
+				</h3>
+				<input ng-model="searchText.skills_required" class="form-control" />
+			</div>
+		</div>
 
-</body>
-</html>
+	</div>
+	<div class="msg myBoldFont" ng-show="alljobs.length==0">No Jobs
+		Posted Yet</div>
+	<div class="blogBox"
+		ng-repeat="job in alljobs  | filter:searchText | orderBy:'job_posted_date' "
+		style="background-color: white; border-bottom: 5px outset rgb(51, 122, 183);">
+		<div style="margin: 2px; padding: 10px; border: 2px solid black">
+			<button ng-click="viewJob(job.job_id)">
+				<h1>
+					<b>{{job.job_title}}</b>
+				</h1>
+			</button>
+			<span style="color: black"><h3>{{job.company_name}}</h3></span>
+			<div style="border: 1px solid grey; width: 100%; margin-top: 10px"></div>
+			<br />
+			<table style="font-size: 20px">
+				<tr>
+					<td><span class="glyphicon glyphicon-briefcase"></span></td>
+					<td><span ng-hide="job.experience">Fresher</span> <span
+						ng-show="job.experience">{{job.experience}} years</span></td>
+				</tr>
+				<tr>
+					<td><span class="glyphicon glyphicon-map-marker"></span></td>
+					<td>{{job.location}}</td>
+				</tr>
+				<tr>
+					<td><span class="fa fa-mortar-board"></span></td>
+					<td>{{job.skills_required}}</td>
+				</tr>
+			</table>
+			<br />
+			<div style="border: 1px solid grey; width: 100%; margin-top: 10px"></div>
+			<br /> <span style="font-size: 20px" class="fa fa-rupee"> <span
+				ng-hide="job.job_salary"> Not Disclosed</span> <span
+				ng-show="job.job_salary"> {{job.job_salary}}</span></span> <span
+				style="font-size: 20px" class="fa fa-calendar pull-right">
+				{{job.job_posted_date | date:"dd/MMM/yyyy"}}</span>
+			<div class="row" ng-show="currentUser.role=='A'"
+				style="padding-top: 3px; bottom-top: 3px">
+				<div class="col-md-4" style="padding-top: 3px; bottom-top: 3px">
+					<button ng-click="viewAppliedUser(job.job_id)"
+						class="btn btn-primary myBoldFont btn-block">View Applied User</button>
+				</div>
+				<div class="col-md-4" style="padding-top: 3px; bottom-top: 3px">
+					<a href="updateJob/{{job.job_id}}"
+						class="btn btn-success btn-block myBoldFont">Update</a>
+				</div>
+				<div class="col-md-4" style="padding-top: 3px; bottom-top: 3px">
+					<button ng-click="deleteJob(job.job_id)"
+						class="btn btn-danger btn-block myBoldFont">Delete</button>
+				</div>
+				<br />
+				<br />
+			</div>
+
+
+		</div>
+	</div>
+	<br />
+</div>

@@ -16,7 +16,7 @@
  <h1 class="well"><center><font face="Monotype Corsiva">Login Form</font></center></h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form>
+				<form ng-submit="login()">
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
@@ -28,7 +28,7 @@
 								<input type="password" name="user_password" ng-model="User.user_password" placeholder="Enter Password Here.." class="form-control">
 							</div>
 						</div>		
-						<button type="button" ng-click="login()" class="btn btn-lg btn-info">login</button>					
+						<button type="submit"  class="btn btn-lg btn-info">login</button>					
 					</div>
 				</form> 
 		</div>

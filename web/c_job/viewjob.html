@@ -1,0 +1,96 @@
+<div class="container" ng-Controller="c_job_Controller">
+	<div class="container col-md-offset-2 col-md-8"
+		style="padding: 20px; font-size: 20px;">
+		<div style="background-color: #FFF;">
+			<div
+				style="background-color: rgb(51, 122, 183); color: #fff; padding: 10px; margin: 0"
+				class="row">
+				<div class="col-md-12">
+					<h2>
+						<b>{{view_job.job_title}}</b>
+					</h2>
+				</div>
+				<div class="row" style="margin: 0">
+					<div class="col-md-4">{{view_job.company_name}}</div>
+					<div class="col-md-offset-4 col-md-4">
+						<span class="fa fa-calendar"> </span>
+						&nbsp;&nbsp;{{view_job.job_posted_date | date:'dd MMMM yyyy'}}
+					</div>
+				</div>
+				<br />
+			</div>
+			<div style="padding-left: 20px">
+				<table class="table">
+					<tr>
+						<td class="text-center"><span class="fa fa-group"></span></td>
+						<td><span ng-hide="view_job.no_of_openings"> Not
+								Mentioned</span> <span ng-show="view_job.no_of_openings">
+								{{view_job.no_of_openings}} no_of_openings</span></td>
+					</tr>
+					<tr>
+						<td class="text-center"><span
+							class="glyphicon glyphicon-briefcase"></span></td>
+						<td><span ng-hide="view_job.experience">Fresher</span> <span
+							ng-show="view_job.experience">{{view_job.experience}}
+								years</span></td>
+					</tr>
+					<tr>
+						<td class="text-center"><span
+							class="glyphicon glyphicon-map-marker"></span></td>
+						<td>{{view_job.location}}</td>
+					</tr>
+					<tr>
+						<td class="text-center"><span class="fa fa-mortar-board"></span></td>
+						<td>{{view_job.skills_required}}</td>
+					</tr>
+					<tr>
+						<td class="text-center"><span class="fa fa-rupee"></span></td>
+						<td><span ng-hide="view_job.job_salary">Not Disclosed</span>
+							<span ng-show="view_job.job_salary">
+								{{view_job.job_salary}}</span></td>
+					</tr>
+				</table>
+				<hr />
+				<h3>
+					<b>Job Description</b>
+				</h3>
+				<p>{{view_job.job_description}}</p>
+			</div>
+			<div style="background-color: grey; color: #fff; padding: 10px">
+				<h3>
+					<b>Employer Details</b>
+				</h3>
+				Company Name : {{view_job.company_name}}<br /> Contact Number :
+				{{view_job.contact}}
+			</div>
+			<a ng-click="jobLogin()" class="btn btn-primary btn-block myBoldFont"
+				ng-hide="currentUser">Login to Apply</a>
+			<div
+				style="padding: 10px; background-color: rgb(51, 122, 183); color: #fff; text-align: center;"
+				ng-show="currentUser" ng-if="currentUser.role!='A'">
+				<button class="btn btn-primary btn-block myBoldFont"
+					ng-hide="applied" ng-click="applyForJob(view_job.job_id)">Apply</button>
+				<span class="myBoldFont" ng-show="applied">You have already
+					applied for this Job</span>
+			</div>
+
+			<div class="row" ng-show="currentUser.role=='A'" style="margin: 0">
+				<br />
+				<div class="col-md-4">
+					<button ng-click="viewAppliedUser(view_job.job_id)"
+						class="btn btn-primary myBoldFont btn-block">View Applied User</button>
+				</div>
+				<div class="col-md-4">
+					<button ng-click="updateJob/{{view_job.job_id}}"
+						class="btn btn-success myBoldFont btn-block">Update</button>
+				</div>
+				<div class="col-md-4">
+					<button ng-click="deleteJob(view_job.job_id)"
+						class="btn btn-danger myBoldFont btn-block">Delete</button>
+				</div>
+				<br />
+				<br />
+			</div>
+		</div>
+	</div>
+</div>

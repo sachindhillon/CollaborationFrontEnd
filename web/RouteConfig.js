@@ -1,10 +1,13 @@
-var myApp=angular.module("myApp",["ngRoute"]);
+var myApp=angular.module("myApp",['ngRoute','ngCookies'])
 myApp.config(function($routeProvider)
 		{
-	alert("i am route")
-	$routeProvider.when("/",{templateUrl:"/index.html"})
+	alert("hello user welcome to site")
+	
+	$routeProvider
+	
+	.when("/",{templateUrl:"home.html"})
 	.when("/login",{templateUrl:"c_user/login.html"})
-	.when("/loginSuccess",{templateUrl:"c_blog/showallblogs.html"})
+	.when("/loginSuccess",{templateUrl:"home.html"})
 	.when("/register",{templateUrl:"c_user/register.html"})
 	.when("/contactus",{templateUrl:"contactus.html"})
 	.when("/aboutus",{templateUrl:"aboutus.html"})
@@ -24,15 +27,14 @@ myApp.config(function($routeProvider)
 	.when("/pendingFriends",{templateUrl:"c_friend/pendingfriends.html"})
 	.when("/suggestedFriends",{templateUrl:"c_friend/suggestedfriends.html"})
 	.when("/chat",{templateUrl:"c_chat/chatroom.html"})
-	/*.when("/logout",{templateUrl:"c_user/login.html"})*/
 	.when("/addjob",{templateUrl:"c_job/addjob.html"})
 	.when("/listofjob",{templateUrl:"c_job/joblist.html"})
-	.when("/alljobsadmin",{templateUrl:"c_job/adminmanagejobs.html"})
-	.when("/appliedjobs",{templateUrl:"c_job/appliedjobs.html"});
+	.when("/appliedjobs",{templateUrl:"c_job/appliedjobs.html"})
+	.when("/viewJob",{templateUrl:"c_job/viewjob.html"});
 		
 		});
 
-	/*myApp.run(function($rootScope,$cookieStore)
+	myApp.run(function($rootScope,$cookieStore)
 			{
 			console.log("m in run....");
 			console.log($rootScope.currentUser);
@@ -40,4 +42,4 @@ myApp.config(function($routeProvider)
 				{
 				$rootScope.currentUser=$cookieStore.get("UserData");
 				}
-			});*/
+			});

@@ -1,9 +1,8 @@
-myApp.controller("c_userController",function($scope,$http,$rootScope,$location)
+myApp.controller("c_userController",function($scope,$http,$rootScope,$location,$cookieStore)
 		{
 	$scope.User={username:'',user_email:'',login_name:'',user_password:'',mobile:'',details:'',message:'',role:''}
 	$scope.register=function()
 	{
-		alert("hello");
 		console.log("emailid"+$scope.User.user_email);
 		console.log("user_password"+$scope.User.user_password);
 		$http.post('http://localhost:8081/CollaborationRestService/registerUser',$scope.User)
@@ -13,6 +12,9 @@ myApp.controller("c_userController",function($scope,$http,$rootScope,$location)
 			console.log("registration successfully");
 			console.log(response.statusText);
 			$location.path("/login");
+				},function(response)
+				{
+					alert("user already registered");
 				});
 	}
 	
@@ -24,16 +26,21 @@ $http.post('http://localhost:8081/CollaborationRestService/validate',$scope.User
 			$scope.User=response.data;
 			$rootScope.currentUser=$scope.User;
 			console.log($scope.User.message);
-			/*$cookieStore.put('UserData', response.data);*/
+			$cookieStore.put('UserData', response.data);
 			console.log(response.statusText);
 			$location.path("/loginSuccess");
+				},function(response)
+				{
+					alert("incorrect password");
+					
 				});
 	}
 		
 	$scope.logout=function()
 	{
-		console.log("enter in the logout function");
+		alert("Logged out Successfully");
 		delete $rootScope.currentUser;
-		$location.path("/");
+		$location.path("/login");
+		$window.location.reload();
 	}
 		});
