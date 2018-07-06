@@ -1,8 +1,9 @@
-myApp.controller("c_forumDiscussion_Controller",function($http,$scope,$rootScope,$location)
+myApp.controller("c_forumDiscussion_Controller",function($http,$scope,$rootScope,$location,$route)
 		{
 	$scope.discussion={discussion_id:'',forum_id:'',discussion:'',discussion_date:'',login_name:''};
 	
 	$scope.forumData;
+	
 	function listMyForumDiscussions()
 	{
 		$http.get('http://localhost:8081/CollaborationRestService/c_forum_discussion/list/'+$rootScope.forum_id)
@@ -31,7 +32,7 @@ myApp.controller("c_forumDiscussion_Controller",function($http,$scope,$rootScope
 		.then(function(response){
 			console.log("discussion added successfully");
 			console.log(response.statusText);
-			$location.path("/showforum");
+			$route.reload();
 		});
 	}
 	

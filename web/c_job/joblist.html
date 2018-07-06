@@ -38,12 +38,12 @@
 			<br />
 			<table style="font-size: 20px">
 				<tr>
-					<td><span class="glyphicon glyphicon-briefcase"></span></td>
+					<td><span class="fa-briefcase"></span></td>
 					<td><span ng-hide="job.experience">Fresher</span> <span
 						ng-show="job.experience">{{job.experience}} years</span></td>
 				</tr>
 				<tr>
-					<td><span class="glyphicon glyphicon-map-marker"></span></td>
+					<td><span class="fa fa-map-marker"></span></td>
 					<td>{{job.location}}</td>
 				</tr>
 				<tr>
@@ -64,14 +64,14 @@
 					<button ng-click="viewAppliedUser(job.job_id)"
 						class="btn btn-primary myBoldFont btn-block">View Applied User</button>
 				</div>
-				<div class="col-md-4" style="padding-top: 3px; bottom-top: 3px">
+				<!--  <div class="col-md-4" style="padding-top: 3px; bottom-top: 3px">
 					<a href="updateJob/{{job.job_id}}"
 						class="btn btn-success btn-block myBoldFont">Update</a>
-				</div>
+				</div> -->
 				<div class="col-md-4" style="padding-top: 3px; bottom-top: 3px">
 					<button ng-click="deleteJob(job.job_id)"
 						class="btn btn-danger btn-block myBoldFont">Delete</button>
-				</div>
+				</div> 
 				<br />
 				<br />
 			</div>

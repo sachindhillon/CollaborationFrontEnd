@@ -8,7 +8,7 @@ myApp.controller("c_userController",function($scope,$http,$rootScope,$location,$
 		$http.post('http://localhost:8081/CollaborationRestService/registerUser',$scope.User)
 		.then(function(response)
 				{
-			
+			alert(" registered successfully");
 			console.log("registration successfully");
 			console.log(response.statusText);
 			$location.path("/login");
@@ -35,12 +35,51 @@ $http.post('http://localhost:8081/CollaborationRestService/validate',$scope.User
 					
 				});
 	}
+	function listofjob()
+	{
+		$http.get('http://localhost:8081/CollaborationRestService/c_job/list')
+		.then(function(response)
+				{
+			$scope.jobs=response.data;
+			$rootScope.alljobs=$scope.jobs;
+			console.log("list is coming..")
+			
+				});
+	}
+	listofjob();
+	
+	function listOfBlogs()
+	{
+		console.log("list of blogs");
+		$http.get('http://localhost:8081/CollaborationRestService/c_blog/approvedBlogList')
+		.then(function(response)
+				{
+			console.log(response.data);
+			$scope.allblogdata=response.data;
+			$rootScope.blogss=$scope.allblogdata;
+				});
+	}
+	listOfBlogs();
+	
+	function listOfUsers()
+	{
+		console.log("list of users");
+		$http.get('http://localhost:8081/CollaborationRestService/c_user/list')
+		.then(function(response)
+				{
+			console.log(response.data);
+			$scope.allUsers=response.data;
+			$rootScope.userlist=$scope.allUsers;
+				});
+	}
+	listOfUsers();
+	
 		
 	$scope.logout=function()
 	{
 		alert("Logged out Successfully");
 		delete $rootScope.currentUser;
 		$location.path("/login");
-		$window.location.reload();
+	
 	}
 		});

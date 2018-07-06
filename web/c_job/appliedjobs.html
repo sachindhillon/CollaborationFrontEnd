@@ -1,29 +1,32 @@
-<div class="container-fluid" style="background-image: url('resources/images/backjob.jpg'); background-size: 100%;">
+
 <div class="container">
 <br/>
 <div style="background-color: #fff;padding-bottom:10px;">
 <div class="text-center myBoldFont" style="padding:20px;font-size: 40px;background-color:rgb(51,122,183);color:white">Applied Users</div>
 <div style="margin:20px;border: 2px solid black;padding:10px">
-<h1><b> Applied For :</b> <button ng-click="viewJob/{{job.job_id}}">{{job.job_title}}</button></h1>
+<h1><b> Applied For :</b> <strong>{{appusers[0].jobapp_title}}</strong></h1>
 <div style="border:2px solid grey;width:100%;margin-top: 10px"></div>
 <br/>
-<div class="msg myBoldFont" ng-show="appliedUsers.length==0">No User Applied Yet</div>
-<table class="table" style="font-size: 25px" ng-hide="appliedUsers.length==0">
-<tr><th>User</th><th>Email ID</th></tr>
-					<tr ng-repeat="appliedUser in appliedUsers">
+<div class="msg myBoldFont" ng-show="appusers.length==0">No User Applied Yet</div>
+<table class="table" style="font-size: 15px" ng-hide="appusers.length==0">
+<tr><th>User</th><th>Email Id</th><th>Applied Date</th><th>Status</th></tr>
+					<tr ng-repeat="appliedUser in appusers">
 						<td><a
 							href="#!viewProfile/{{appliedUser.applied_by.username}}"><img
 								src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{appliedUser.login_name}}"
 								alt="Image" style="height: 50px; width: 50px" />
-								{{appliedUser.login_name}}
-								</a></td>
-						<td>{{appliedUser.applied_by.email}}</td>
+								
+								</a>{{appliedUser.login_name}}</td>
+						<td>{{appliedUser.emailid}}</td>
+						<td>{{appliedUser.applied_date|date:"fulldate"}}</td>
+						<td ng-if="appliedUser.jobApp_status=='N'">Pending</td>
+						<td ng-if="appliedUser.jobApp_status=='A'">Approved</td>
 					</tr>
 				</table>
 </div>
 </div>
 </div>
-<br/></div>
+<br/>
 <style>
 .msg{ font-size:40px;text-align:center;padding:20px;background-color:white;}
 </style>

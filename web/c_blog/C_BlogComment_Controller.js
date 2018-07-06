@@ -1,8 +1,9 @@
-myApp.controller("c_blogComment_Controller",function($http,$scope,$rootScope,$location)
+myApp.controller("c_blogComment_Controller",function($http,$scope,$rootScope,$location,$route)
 		{
 	$scope.comment={blogComment_id:'',blog_id:'',comments:'',commented_date:'',login_name:''};
 	$scope.allBlogCommentData;
 	$scope.blogData;
+	
 	function listMyBlogComments()
 	{
 		$http.get('http://localhost:8081/CollaborationRestService/c_blogComment/list/'+$rootScope.blog_id)
@@ -31,7 +32,7 @@ myApp.controller("c_blogComment_Controller",function($http,$scope,$rootScope,$lo
 		.then(function(response){
 			console.log("comment added successfully");
 			console.log(response.statusText);
-			$location.path("/showBlog");
+			$route.reload();
 		});
 	}
 	

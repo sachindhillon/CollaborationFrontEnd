@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-image: url('resources/images/backjob.jpg'); background-size: 100%;">
+
 <div class="container" ng-Controller="c_blogController">
 	<h1 class="well">
 		<center>
@@ -10,16 +10,15 @@
 	{{currentUser.username}}<br>
 	
 		<button type="button" class="btn btn-primary" data-toggle="collapse"
-			data-target="#{{blog.blog_title}}">{{blog.blog_title}}</button>
+			data-target="#{{blog.blog_id}}">{{blog.blog_title}}</button>
 			<button type="button" class="btn btn-danger" ng-click="deleteMyBlog(blog.blog_id)">Delete</button>
 		
 		<label ng-show="blog.blog_status=='A'">Approved</label>
 		<label ng-show="blog.blog_status=='R'">Rejected</label>
 		<label ng-show="blog.blog_status=='N'">Not Approved</label>
-		<div id="{{blog.blog_title}}" class="collapse show">
+		<div id="{{blog.blog_id}}" class="collapse show">
 			{{blog.blog_description}}</div>
 			<hr>
 </div>
 	</div>
-</div>
 </div>

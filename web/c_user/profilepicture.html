@@ -1,4 +1,70 @@
 <div class="container" ng-Controller="c_userController">
+
+<br>
+<div align="center">
+	<div class="card" style="width:400px;min-height:630px;padding:0px;border:1px solid black;">
+ 	 <h4 style="background-color:lightblue;padding:10px;" align="center" class="card-title"><b>Edit Profile</b></h4><br>
+    	<div style="text-align:left;" class="card-body">
+    
+   <form
+		action="http://localhost:8081/CollaborationRestService/profilePicUpload"
+		method="post" enctype="multipart/form-data">
+
+		<div>
+			<div class="form-group">
+     			<label for="email"><b>Name :&nbsp;&nbsp;</b> {{currentUser.username}}</label>
+    		</div>
+    
+    		<div class="form-group">
+    	  		<label for="email"><b>Email Id :&nbsp;&nbsp;</b> {{currentUser.user_email}}</label>
+    		</div>
+		<div class="row">
+			<div class="form-group">
+      			<label for="email"><b>&nbsp;&nbsp;&nbsp;Profile_Pic :&nbsp;&nbsp;</b></label>
+    		</div>
+    
+    		<div class="form-group">
+      		<img src="http://localhost:8081/CollaborationRestService/getProfilePic/{{currentUser.login_name}}" height="100px" width="100px" ng-hide="currentUser==undefined">
+    		</div>
+    		</div>
+		</div>	
+	
+		<hr><br><br>
+    	
+    	<div class="form-group">
+      		<label for="email"><b>UPLOAD NEW PROFILE PICTURE</b></label>
+      		<input type="file" name="file" placeholder="upload profile"
+						ng-model="C_Profile.profile_pic" class="form-control">
+    	</div>
+    
+    	<br><br>
+    
+    	<div align="center" class="form-group" style="background-color: green;">
+    		<button type="submit" value="Upload" class="form-control" >Upload</button>
+    	</div>
+   
+	</form>
+	
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <br>
+<br>
 	<form
 		action="http://localhost:8081/CollaborationRestService/profilePicUpload"
 		method="post" enctype="multipart/form-data">
@@ -18,7 +84,7 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	</form> -->
 
 
 </div>

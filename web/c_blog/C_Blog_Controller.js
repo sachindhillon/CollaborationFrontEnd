@@ -4,6 +4,8 @@ myApp.controller("c_blogController",function($http,$scope,$rootScope,$location,$
 	
 	$scope.allblogdata;
 	$scope.myBlogs;
+	
+	
 	$scope.addBlog=function()
 	{
 		alert("blog");

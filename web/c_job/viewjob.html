@@ -10,13 +10,13 @@
 						<b>{{view_job.job_title}}</b>
 					</h2>
 				</div>
-				<div class="row" style="margin: 0">
-					<div class="col-md-4">{{view_job.company_name}}</div>
-					<div class="col-md-offset-4 col-md-4">
+				
+					<div class="col-md-6">{{view_job.company_name}}</div>
+					<div class="col-md-6">
 						<span class="fa fa-calendar"> </span>
-						&nbsp;&nbsp;{{view_job.job_posted_date | date:'dd MMMM yyyy'}}
+						{{view_job.job_posted_date | date:'dd MMMM yyyy'}}
 					</div>
-				</div>
+				
 				<br />
 			</div>
 			<div style="padding-left: 20px">
@@ -29,14 +29,14 @@
 					</tr>
 					<tr>
 						<td class="text-center"><span
-							class="glyphicon glyphicon-briefcase"></span></td>
+							class="fa-briefcase"></span></td>
 						<td><span ng-hide="view_job.experience">Fresher</span> <span
 							ng-show="view_job.experience">{{view_job.experience}}
 								years</span></td>
 					</tr>
 					<tr>
 						<td class="text-center"><span
-							class="glyphicon glyphicon-map-marker"></span></td>
+							class="fa fa-map-marker"></span></td>
 						<td>{{view_job.location}}</td>
 					</tr>
 					<tr>
@@ -63,7 +63,7 @@
 				Company Name : {{view_job.company_name}}<br /> Contact Number :
 				{{view_job.contact}}
 			</div>
-			<a ng-click="jobLogin()" class="btn btn-primary btn-block myBoldFont"
+			<a ng-href="#/login" class="btn btn-primary btn-block myBoldFont"
 				ng-hide="currentUser">Login to Apply</a>
 			<div
 				style="padding: 10px; background-color: rgb(51, 122, 183); color: #fff; text-align: center;"
@@ -80,14 +80,14 @@
 					<button ng-click="viewAppliedUser(view_job.job_id)"
 						class="btn btn-primary myBoldFont btn-block">View Applied User</button>
 				</div>
-				<div class="col-md-4">
+				 <!-- <div class="col-md-4">
 					<button ng-click="updateJob/{{view_job.job_id}}"
 						class="btn btn-success myBoldFont btn-block">Update</button>
-				</div>
+				</div> -->
 				<div class="col-md-4">
 					<button ng-click="deleteJob(view_job.job_id)"
 						class="btn btn-danger myBoldFont btn-block">Delete</button>
-				</div>
+				</div> 
 				<br />
 				<br />
 			</div>

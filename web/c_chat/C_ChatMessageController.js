@@ -1,6 +1,6 @@
 myApp.controller("c_chatMessageController",function($scope,$rootScope,chatService)
 		{
-	alert("hello i m in caht");
+	
 		
 	$scope.messages=[];
 	$scope.message="";
@@ -10,6 +10,9 @@ myApp.controller("c_chatMessageController",function($scope,$rootScope,chatServic
 	{
 		chatService.send($rootScope.currentUser.login_name+":"+$scope.message);
 		$scope.message="";
+	},function()
+	{
+		alert("please login to chat");
 	};
 	
 	chatService.receive().then(null,null,function(message)

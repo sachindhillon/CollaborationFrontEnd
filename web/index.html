@@ -26,8 +26,9 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
 <meta charset="ISO-8859-1">
 <title>index Page</title>
+
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" style="background-image: url('resources/images/backback.jpg');">
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-grey fixed-top">
   <!-- Brand -->
@@ -35,10 +36,10 @@
 
   <!-- Links -->
   <ul class="navbar-nav">
-    <li class="nav-item">
+    <li class="nav-item" ng-show="currentUser==undefined">
       <a class="nav-link" href="#/register"> Register </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" ng-show="currentUser==undefined">
       <a class="nav-link" href="#/login"> Login </a>
     </li>
 
@@ -47,7 +48,7 @@
     </li>
     <!-- Dropdown -->
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+      <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
          Blog 
       </a>
       <div class="dropdown-menu">
@@ -64,11 +65,12 @@
   </form>
   </li> -->
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+      <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
          Job 
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#/addjob" ng-hide="currentUser==undefined"> Add Job</a>
+        <a class="dropdown-item" href="#/addjob" ng-hide="currentUser==undefined||currentUser.role!='A'"> Add Job</a>
+         <a class="dropdown-item" href="#/adminjob" ng-hide="currentUser==undefined||currentUser.role!='A'"> Admin Job</a>
         <a class="dropdown-item" href="#/listofjob" ng-hide="<!-- currentUser==undefined|| -->currentUser.role=='A'">All Jobs</a>
        
       </div>
@@ -79,7 +81,7 @@
   
   
   <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+      <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
         Forum 
       </a>
       <div class="dropdown-menu">
@@ -100,21 +102,34 @@
   </ul>
   <ul class="navbar-nav ml-auto" ng-hide="currentUser==undefined">
 <li class="nav-item">
-<a class="nav-link" href="#/editProfile">Edit Profile</a>
+<a class="nav-link" href=""></a>
 </li>
-<li class="nav-item">
-<a class="nav-link" href="#"><font color="white"  face="calibri" size='4' >Welcome {{currentUser.login_name}}</font></a>
-</li>
+
+<li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
+     <font color="white"  face="calibri" size='4' >  Welcome {{currentUser.login_name}}</font>
+      </a>
+      <div class="dropdown-menu">
+      
+        <a class="dropdown-item" href="#/editProfile" ng-hide="currentUser==undefined">Edit Profile</a>
+         <!--  <a class="dropdown-item" href="#/changepassword" ng-hide="currentUser==undefined">Change Password</a> -->
+
+      </div>
+    </li>
+
+
+
+
 <li ng-hide="currentUser==undefined" class="nav-item">
 <img src="http://localhost:8081/CollaborationRestService/getProfilePic/{{currentUser.login_name}}" height="40px" width="40px">
 </li>
 
 <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+      <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
         Friends
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#/sendFriendRequest" ng-hide="currentUser==undefined"> Send Friend Request</a>
+      
         <a class="dropdown-item" href="#/showFriends" ng-hide="currentUser==undefined">My Friends</a>
           <a class="dropdown-item" href="#/pendingFriends" ng-hide="currentUser==undefined">Friend Requests</a>
            <a class="dropdown-item" href="#/suggestedFriends" ng-hide="currentUser==undefined">Suggested Friends</a>
@@ -129,9 +144,22 @@
 </nav>
 
 <br>
-<br><br><br><br>
+<br>
 
- <div  ng-view>
+ <div  ng-view >
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- <footer class="footer">
+	<h4>© 2017 <strong>FrienlyChat.</strong> All rights reserved | Design & Developed by <strong>Sachin</strong> </h4>
+</footer> -->
 </body>
 </html>
+
+ 

@@ -30,11 +30,12 @@ myApp.config(function($routeProvider)
 	.when("/addjob",{templateUrl:"c_job/addjob.html"})
 	.when("/listofjob",{templateUrl:"c_job/joblist.html"})
 	.when("/appliedjobs",{templateUrl:"c_job/appliedjobs.html"})
-	.when("/viewJob",{templateUrl:"c_job/viewjob.html"});
+	.when("/viewJob",{templateUrl:"c_job/viewjob.html"})
+	.when("/adminjob",{templateUrl:"c_job/adminjob.html"});
 		
 		});
 
-	myApp.run(function($rootScope,$cookieStore)
+/*	myApp.run(function($rootScope,$cookieStore)
 			{
 			console.log("m in run....");
 			console.log($rootScope.currentUser);
@@ -42,4 +43,4 @@ myApp.config(function($routeProvider)
 				{
 				$rootScope.currentUser=$cookieStore.get("UserData");
 				}
-			});
+			});*/

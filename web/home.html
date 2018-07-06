@@ -6,14 +6,14 @@
   <style>
   /* Make the image fully responsive */
   .carousel-inner img {
-      width: 100%;
+      width:100%;
       height: 100%;
   }
   </style>
 </head>
 <body>
 
-<div class="container mt-3">
+<div class="container5">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ul class="carousel-indicators">
@@ -33,100 +33,99 @@
       <img src="resources/images/Slide3.jpg" alt="New York" style="width:100%;">
     </div>
   </div>
-<!--    Left and right controls 
-  <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a> -->
+
 </div>
 </div>
+<script> $('.carousel').carousel();</script>
 
-<!-- <link href="resources/css/login.css" rel="stylesheet"/>
-<div id="homeCarousel" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="resources/images/Slide1.jpg" alt="Los Angeles" style="width:100%;">
-      </div>
 
-      <div class="item">
-        <img src="resources/images/Slide2.jpg" alt="Chicago" style="width:100%;">
-      </div>
-    
-      <div class="item">
-        <img src="resources/images/Slide3.jpg" alt="New York" style="width:100%;">
-      </div>
-  
-    </div>
 
-    Left and right controls
-    <span class="left carousel-control" data-target="#homeCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </span>
-    <span class="right carousel-control" data-target="#homeCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </span>
-  </div>
- -->
-<div>
-  <br/>
-<div class="container"  style="background-color: #fff">
-<div class="col-sm-7">
-<center><h1>Top 5 Blogs</h1></center>
-<div class="col-sm-offset-3 col-sm-6" style="border:2px solid red"></div><br/>
 <div class="row">
-<div class="col-md-12" style="padding:10px;background-color: white;">
-<div class="thumbnail" style="box-shadow:0 0 10px grey;">
-<img ng-src="http://localhost:8081/mycomprobackend/resources/images/{{blogs[0].blog_id}}.jpg" alt="Blog image" onerror="this.src='resources/images/boxCover.jpg'" style="width:100%"/>
-<div class="caption text-center">
-<a href="#!viewBlog/{{blogs[0].blog_id}}"><h4><b>{{blogs[0].blog_title}}</b></h4></a>
+<div class="col-sm-6" style=" width:40%; align:center; border:3px solid blue; padding-right: 0;background-color: white;">
+<div class="myBoldFont text-center" style="font-size:25px;padding:30px;color: #fff;background-color: orange">
+Top 5 Blogs</div>
+<div class="caption text-center" ng-Controller="c_blogController"style="background-color: white;">
+
+<div ng-repeat="b in blogss"  class="col-md-12 blogBox" >
+<h3><a ng-href="#/showBlog"><b>{{b.blog_title}}</b></a></h3><br/>
+
+
+<div><span style="font-size:18px;">{{b.blog_description.substring(0,300)}}.........</span></div>
+<br/>
 <div class="row">
-<div class="col-sm-12"><span style="font-size:12px;">{{blogs[0].blog_description.substring(0,400)}}.........</span></div>
-</div><br/>
-<div class="row"  style="font-size:14px;">
-<div class="col-md-5"><b>Author : </b><a href="#!viewProfile/{{blogs[0].posted_by.username}}">{{blogs[0].posted_by.firstname}} {{blogs[0].posted_by.lastname}}</a></div>
-<div class="col-md-7"><b><i class="fa fa-calendar"></i> </b>{{blogs[0].posted_on | date:"dd/MMM/yyyy"}}</div>
+<div class="col-sm-8"><b>Author : </b>{{b.login_name}}</div>
+<div class="col-sm-4" style="float: right;"><b><i class="fa fa-calendar"></i></b> {{b.blog_created_date | date:"dd/MMM/yyyy"}}</div>
+</div>
+<hr size="2">
 </div>
 </div>
 </div>
 
-<div ng-repeat="b in blogs" ng-hide="$first"  class="col-md-12 blogBox" style="padding:10px;margin-bottom:10px;background-color: white;">
-<a href="#!viewBlog/{{b.blog_id}}"><h4><b>{{b.blog_title}}</b></h4></a><br/>
-<div class="row">
-<div class="col-sm-3"><img ng-src="http://localhost:8081/mycomprobackend/resources/images/{{b.blog_id}}.jpg" alt="Blog image" onerror="this.src='resources/images/boxCover.jpg'" style="width:100%"/></div>
-<div class="col-sm-9"><span style="font-size:12px;">{{b.blog_description.substring(0,300)}}.........</span></div>
-</div><br/>
-<div class="row"  style="font-size:14px;">
-<div class="col-sm-8"><b>Author : </b>{{b.posted_by.firstname}} {{b.posted_by.lastname}}</div>
-<div class="col-sm-4"><b><i class="fa fa-calendar"></i></b> {{b.posted_on | date:"dd/MMM/yyyy"}}</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-sm-4 col-sm-offset-1">
-<br/><br/>
-<div style="border:3px outset rgb(188,3,94);background-color: rgb(188,3,94);">
-<div class="myBoldFont text-center" style="font-size:25px;padding:30px;color: #fff;">
-Make New Friends
-</div>
-<img src="resources/images/pooh.jpg" style="width:100%"/>
-<a href="#!getSuggestedFriends" class="btn btn-pink btn-block myBoldFont">Get Friend Suggestions</a>
-</div>
-<br/><br/>
-<div style="border:3px solid rgb(188,3,94);background-color: rgb(188,3,94);">
-<div class="myBoldFont text-center" style="font-size:25px;padding:30px;color: #fff;">
+
+<div class="col-sm-6" style="width:40%;min-height:60%; ">
+
+<div style="border:3px solid blue;">
+<div class="myBoldFont text-center" style="font-size:25px;padding:30px;background-color: lightgreen;">
 Job Notification</div>
-<marquee direction="up" style="background-color:#fff;height:580px">
-<ul>
-<li ng-repeat="job in jobs"><h3>{{job.job_title}}</h3></li>
+<marquee direction="up" style="background-color:#fff;height:400px">
+<ul ng-Controller="c_userController">
+<li ng-repeat="job in alljobs"><h3>{{job.job_title}}</h3></li>
 </ul>
 </marquee>
 </div>
 </div>
-</div><br/>
-<script> $('.carousel').carousel();</script>
-</div></body></html>
+
+</div>
+<div>
+<br>
+<footer  style="background-color: powderwhite; border: 4px;">
+<div class="container-fluid footer1" >
+<div class="row">
+<div class="col-md-3">
+				<h3><b>Information</b></h3>
+				<ul class="foot-info">
+					<li><a href="#/aboutUs">FAQ's</a></li>
+					<li><a href="#/aboutus">About Us</a></li>
+					<li><a href="#/listofjob"/>Jobs</a></li>
+        			<li><a href="#/showBlog">Blogs</a></li> 
+				</ul></div>
+				<div class="col-md-3">
+				<h3><b>Manage</b></h3>
+				<ul class="foot-info">
+				
+         <li><a href="#/showFriends"/>My Friends</a></li>
+         <li ng-show="currentUser">
+        <form ng-controller="c_userController" >
+<input type="submit" value="Logout" class="btn btn-info" ng-click="logout()">
+</form>
+       </ul></div>
+				<div class="col-md-3">
+				<h3><b>Contact Us</b></h3>
+				<ul class="foot-info" type="none">
+					<li><i class="fa fa-map-marker" style="color:black"></i> New Delhi, India</li>
+					<li><i class="fa fa-envelope" style="color:black"></i> sachindhillon0000@gmail.com</li>
+					<li><i class="fa fa-phone" style="color:black"></i> 7988314892</li>
+				</ul></div>
+				<div class="col-md-3 ">
+				<h3><b>Follow us on</b></h3>
+				
+			<ul>
+              <li class="facebook"><a href="https://www.facebook.com">Facebook</a></li>
+              <li class="twitter"><a href="https://www.twitter.com">Twitter</a></li>
+              <li class="pinterest"><a href="https://in.pinterest.com">Pinterest</a></li>
+              <li class="googleplus"><a href="https://plus.google.com">GooglePlus</a></li>
+              <li class="vimeo"><a href="https://vimeo.com">Vimeo</a></li>
+              <li class="youtube"><a href="https://www.youtube.com">Youtube</a></li>
+            </ul>
+     
+
+     
+				</div>
+</div>
+</div>
+<div class="container-fluid footer2">
+	© 2018 FrienlyChat. All rights reserved | Design & Developed by Sachin
+</div></footer> 
+
+</div>
+</body></html>

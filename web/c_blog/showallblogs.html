@@ -1,14 +1,15 @@
-<div class="container-fluid" style="background-image: url('resources/images/backjob.jpg'); background-size: 100%;">
+
 <div class="container" ng-Controller="c_blogController">
 <h1 class="well"><center><font face="Monotype Corsiva">Blog details</font></center></h1>
 <div ng-repeat="blog in myBlogs">
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#{{blog.blog_id}}">{{blog.blog_title}}</button>
-{{blog.blog_likes}}<button class="btn btn-primary" ng-click="incrementLikes(blog.blog_id)">likes</button>
-<button  type="button" ng-click="blogComment(blog.blog_id)">Comment</button>
+{{blog.blog_likes}}<button class="btn btn-primary" ng-click="incrementLikes(blog.blog_id)" ng-show="currentUser">like</button>
+<button  type="button" ng-click="blogComment(blog.blog_id)"ng-show="currentUser">Comment</button>
   <div id="{{blog.blog_id}}" class="collapse show">
     {{blog.blog_description}}
   </div>
+  <h5 align="right">Created By:-</h5><h4 align="right">{{blog.login_name}}</h4>
   <hr>
 </div>
 </div>
-</div>
+

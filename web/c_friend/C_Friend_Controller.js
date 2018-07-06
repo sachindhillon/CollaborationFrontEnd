@@ -12,6 +12,7 @@ myApp.controller("c_friendController",function($http,$scope,$rootScope,$location
 		$http.post('http://localhost:8081/CollaborationRestService/acceptFriendRequest/'+friend_id)
 		.then(function(response)
 				{
+			alert("you accepted friend request");
 			console.log("entering the accept friend request function");
 			$location.path("/showFriends");
 				});
@@ -40,10 +41,11 @@ myApp.controller("c_friendController",function($http,$scope,$rootScope,$location
 	
 	$scope.reject=function(friend_id)
 	{
-		alert("reject friend clicked");
+		
 		$http.post('http://localhost:8081/CollaborationRestService/deleteFriendRequest/'+friend_id)
 		.then(function(response)
 				{
+			alert("rejected friend request");
 			console.log("entering the delete friend request function");
 			$route.reload();
 				});
@@ -58,7 +60,10 @@ myApp.controller("c_friendController",function($http,$scope,$rootScope,$location
 			$scope.myfriendlist=response.data;
 			$rootScope.myFriend=$scope.myfriendlist;
 			console.log($scope.myfriendlist);
-			
+			if($scope.myfriendlist.length<=0)
+			{
+			alert("no friends yet");
+			}
 				});
 	}
 	showFriendsList();
@@ -70,6 +75,10 @@ myApp.controller("c_friendController",function($http,$scope,$rootScope,$location
 				{
 			//alert("pending friends list is coming");
 			$scope.pendingList=response.data;
+			if($scope.pendingList.length<=0)
+				{
+				alert("no requests pending");
+				}
 			$rootScope.pending=$scope.pendingList
 			console.log($scope.pendingList);
 			
@@ -86,7 +95,10 @@ myApp.controller("c_friendController",function($http,$scope,$rootScope,$location
 			$scope.User=response.data;
 		$rootScope.suggested=$scope.User;
 			console.log($scope.User);
-			
+			if($scope.User.length<=0)
+			{
+			alert("no friends suggestions");
+			}
 				});
 	}
 	suggestedFriendsList();

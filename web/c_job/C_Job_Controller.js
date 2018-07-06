@@ -3,6 +3,9 @@ myApp.controller("c_job_Controller",function($http,$scope,$rootScope,$location,$
 	$scope.job={ };
 	$scope.jobs;
 	$scope.applied;
+	$scope.appliedUser={applied_date:'',emailid:'',jobApp_Id:'',jobApp_status:'',job_id:'',jobapp_title:'',login_name:'',message:'',reason:''};
+	$scope.appUser;
+	
 	$scope.addjob=function()
 	{
 		alert("add job clicked");
@@ -11,7 +14,7 @@ myApp.controller("c_job_Controller",function($http,$scope,$rootScope,$location,$
 				
 		{
 			alert("job added successfully");
-			$location.path("/alljobsadmin");
+			$location.path("/listofjob");
 			
 		});
 	}
@@ -30,6 +33,26 @@ myApp.controller("c_job_Controller",function($http,$scope,$rootScope,$location,$
 				});
 	}
 	
+	$scope.approveApplication=function(jobApp_Id)
+	{
+		console.log("approve forum");
+		$http.put('http://localhost:8081/CollaborationRestService/c_job/approveApplication/'+jobApp_Id)
+		.then(function(response)
+				{
+			$route.reload();
+				});
+	}
+	
+	
+	$scope.rejectApplication=function(jobApp_Id)
+	{
+		console.log("reject forum");
+		$http.put('http://localhost:8081/CollaborationRestService/c_job/rejectApplication/'+jobApp_Id)
+		.then(function(response)
+				{
+			$route.reload();
+				});
+	}
 	
 	$scope.applyForJob=function(job_id)
 	{
@@ -38,6 +61,7 @@ myApp.controller("c_job_Controller",function($http,$scope,$rootScope,$location,$
 		.then(function(response)
 				{
 			alert("job applied successfully");
+			$location.path("/listofjob");
 			
 				},function(response)
 				{
@@ -46,18 +70,37 @@ myApp.controller("c_job_Controller",function($http,$scope,$rootScope,$location,$
 				});
 	}
 	
+	
+	
 	$scope.viewAppliedUser=function(job_id)
 	{
 		alert("applied user");
 		$http.get('http://localhost:8081/CollaborationRestService/c_job/appliedUsers/'+job_id)
 		.then(function(response)
 				{
-			alert("applied users are coming");
-			console.log("list is coming..");
-			$scope.appliedUser=response.data;
-			$rootScope.appliedUsers=$scope.appliedUser;
+			$scope.appUser=response.data;
+			$rootScope.appusers=$scope.appUser;
+			$rootScope.jobjob_id=job_id;
+			console.log($rootScope.jobjob_id);
 			$location.path("/appliedjobs");
+				},function(response)
+				{
+					alert("no user applied yet");
 				});
+	}
+	
+	$scope.deleteJob = function(job_id)
+	{
+		$http.delete('http://localhost:8081/CollaborationRestService/deleteJob/'+job_id)
+		.then(function(response)
+				{
+					alert("job delete succesfully");
+					$location.path("/listofjob");
+				},function(response)
+				{
+					alert("Some Users already Applied for this Job...So can't delete right now....");
+					
+				});				
 	}
 	
 	function listofjob()
@@ -72,4 +115,18 @@ myApp.controller("c_job_Controller",function($http,$scope,$rootScope,$location,$
 				});
 	}
 	listofjob();
+	function jobApplications()
+	{
+		$http.get('http://localhost:8081/CollaborationRestService/c_job/applicationList')
+		.then(function(response)
+				{
+			$scope.application=response.data;
+			$rootScope.applications=$scope.application;
+			console.log("list is coming..")
+			
+				});
+	}
+	jobApplications();
+	
+	
 		});

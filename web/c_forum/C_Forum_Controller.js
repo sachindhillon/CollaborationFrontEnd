@@ -4,6 +4,7 @@ myApp.controller("c_forum_Controller",function($http,$scope,$rootScope,$location
 	forum_likes:'',forum_unlikes:'',forum_status:''}
 	$scope.listForumData;
 	$scope.listApprovedData;
+	
 	$scope.insertForum=function()
 	{
 		alert("inserting forum data");

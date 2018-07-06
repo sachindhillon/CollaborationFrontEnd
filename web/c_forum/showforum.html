@@ -1,12 +1,15 @@
+
 <div class="container" ng-Controller="c_forum_Controller">
 <h1 class="well"><center><font face="Monotype Corsiva">Forum details</font></center></h1>
 <div ng-repeat="forum in listApprovedData">
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#{{forum.forum_id}}">{{forum.forum_name}}</button>
-{{forum.forum_likes}}<button class="btn btn-primary" ng-click="incrementLikes(forum.forum_id)">likes</button>
-<button  type="button" ng-click="forumDiscussion(forum.forum_id)">Comment</button>
+
   <div id="{{forum.forum_id}}" class="collapse show">
     {{forum.forum_description}}
   </div>
+  <button class="btn btn-primary" ng-click="incrementLikes(forum.forum_id)"ng-show="currentUser">likes({{forum.forum_likes}})</button>
+<button  type="button" ng-click="forumDiscussion(forum.forum_id)"ng-show="currentUser">Comment</button>
+   <h5 align="right">Created By:-</h5><h4 align="right">{{forum.login_name}}</h4>
   <hr>
 </div>
 </div>

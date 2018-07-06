@@ -13,6 +13,7 @@ body {
 	border-radius: 5px;
 	padding: 10px;
 	margin: 10px 0;
+	width: 100%;
 }
 
 .darker {
@@ -51,7 +52,7 @@ body {
 }
 </style>
 </head>
-<div class="container" ng-controller="c_chatMessageController">
+<div class="container" ng-controller="c_chatMessageController" style="width: 100%;">
 	<h1 class="well">
 		<center>
 			<font face="Monotype Corsiva">Chat Room</font>
@@ -73,24 +74,17 @@ body {
 					</div>
 				</div>
 				<div>
-					<button ng-disabled="message.length>140||message.length==0"
+					<button ng-disabled="message.length>140||message.length==0||currentUser==undefined"
 						class="btn btn-lg btn-info">Send</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	<!-- <div style="border: 2px;" ng-repeat="message in messages|orderBy:'time':true">
-			<time>{{message.time|date:'HH:MM'}}</time>
-			<span>{{message.message}}</span>
-			<br><hr/>
-	</div> -->
+
 	<div class="container1"
 		ng-repeat="message in messages|orderBy:'time':true">
-		<img
-			src="http://localhost:8081/CollaborationRestService/getProfileFriends/{{currentUser.login_name}}"
-			alt="Avatar" style="width: 100%;">
-		<!-- <time>{{message.time|date:'h:mm a'}}</time> -->
+		
 		<p>{{message.message}}</p>
 		<span class="time-right">{{message.time|date:'h:mm a'}}</span>
 	</div>

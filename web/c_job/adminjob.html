@@ -1,0 +1,40 @@
+
+<div class="container" ng-Controller="c_job_Controller">
+<h1 class="well"><center><font face="Monotype Corsiva">List Of Users Applied</font></center></h1>
+<div >
+
+<table class="table">
+<tr>
+<th>JobApp Id</th>
+<th>Name</th>
+<th>Email Id</th>
+<th>Job_Title</th>
+<th>Reason</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+<tr ng-repeat="user in applications">
+<td>{{user.jobApp_Id}}</td>
+<td>{{user.login_name}}</td>
+<td>{{user.emailid}}</td>
+<td>{{user.jobapp_title}}</td>
+<td>{{user.reason}}</td>
+<td>
+	<label ng-show="user.jobApp_status == 'N'">Pending</label>
+	<label ng-show="user.jobApp_status == 'A'">Approved</label>
+	<label ng-show="user.jobApp_status == 'R'">Rejected</label>
+</td> 
+ <td ng-show="user.jobApp_status == 'N'">
+  <input type="button" value="Approve" ng-click="approveApplication(user.jobApp_Id)" class="btn btn-info"/>
+  &nbsp;&nbsp;
+ 
+  <input type="button" value="Reject" ng-click="rejectApplication(user.jobApp_Id)" class="btn btn-danger"/>
+ </td>
+ 
+ 
+
+  </tr>
+  </table>
+  
+</div>
+</div>
